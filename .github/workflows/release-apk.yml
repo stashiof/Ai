@@ -51,20 +51,28 @@ jobs:
             printf '%s' "$KEYSTORE_BASE64" | tr -d '\n\r ' | base64 --decode > "$KEYSTORE_FILE"
             STORE_PASS="$SECRET_STORE_PASSWORD"
             KEY_PASS="$SECRET_KEY_PASSWORD"
-          elif [ -f "debug.keystore.base64" ]; then
-            echo "Using repository permanent keystore (consistent signature for in-place updates)..."
-            tr -d '\n\r ' < debug.keystore.base64 | base64 --decode > "$KEYSTORE_FILE"
+          elif [ -f "app/signing/gembridge-personal.p12" ]; then
+            echo "Using permanent personal keystore (consistent signature for in-place updates)..."
+            cp "app/signing/gembridge-personal.p12" "$KEYSTORE_FILE"
             STORE_PASS="android"
             KEY_PASS="android"
-            keytool -changealias \
-              -keystore "$KEYSTORE_FILE" \
-              -storepass "$STORE_PASS" \
-              -alias androiddebugkey \
-              -destalias upload \
-              -keypass "$KEY_PASS"
           else
-            echo "::error::Neither custom signing secrets nor debug.keystore.base64 were found."
-            exit 1
+            echo "Fallback: generating ephemeral keystore..."
+            GEN_PASS="$(openssl rand -hex 24)"
+            echo "::add-mask::$GEN_PASS"
+            keytool -genkeypair \
+              -keystore "$KEYSTORE_FILE" \
+              -storetype PKCS12 \
+              -keyalg RSA \
+              -keysize 2048 \
+              -validity 10000 \
+              -alias upload \
+              -storepass "$GEN_PASS" \
+              -keypass "$GEN_PASS" \
+              -dname "CN=GemBridge Personal, OU=Personal, O=GemBridge, L=Dhaka, ST=Dhaka, C=BD" \
+              -noprompt
+            STORE_PASS="$GEN_PASS"
+            KEY_PASS="$GEN_PASS"
           fi
 
           chmod 600 "$KEYSTORE_FILE"
