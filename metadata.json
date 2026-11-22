@@ -1,0 +1,6 @@
+{
+  "name": "GemBridge",
+  "description": "Custom Gemini WebView client wrapper with persistent Google sign-in, file upload support, native AndroidBridge JS interface, and an expandable Material 3 automation dock.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

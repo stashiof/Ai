@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">GemBridge</string>
+    <string name="cd_open_command_dock">Open automation tools menu</string>
+    <string name="cd_close_command_dock">Close automation tools menu</string>
+    <string name="cd_capture_response">Capture latest response via AndroidBridge</string>
+    <string name="cd_bridge_inspector">Open AndroidBridge inspector</string>
+    <string name="cd_reload_page">Reload current page</string>
+    <string name="cd_go_home">Navigate to Gemini home</string>
+    <string name="cd_go_back">Navigate back in WebView</string>
+    <string name="cd_go_forward">Navigate forward in WebView</string>
+    <string name="cd_copy_payload">Copy captured response</string>
+    <string name="cd_clear_logs">Clear captured bridge logs</string>
+    <string name="action_capture_response">Capture Response</string>
+    <string name="action_bridge_console">Bridge Inspector</string>
+    <string name="action_reload">Reload</string>
+    <string name="action_home">Gemini Home</string>
+    <string name="action_retry">Retry</string>
+    <string name="action_dismiss">Dismiss</string>
+    <string name="bridge_sheet_title">AndroidBridge Console</string>
+    <string name="bridge_sheet_subtitle">Phase 2 automation hook • window.AndroidBridge</string>
+    <string name="bridge_empty_title">No captured responses yet</string>
+    <string name="bridge_empty_hint">Tap Capture Response from the tool dock or invoke window.AndroidBridge.onResponseCaptured(text) from page scripts.</string>
+    <string name="bridge_status_active">Bridge Active</string>
+    <string name="bridge_captured_snackbar">Captured %1$d chars via AndroidBridge</string>
+    <string name="bridge_copied_snackbar">Copied captured payload to clipboard</string>
+    <string name="bridge_no_response_found">No Gemini response element found on the current page yet.</string>
+    <string name="error_load_title">Unable to reach Gemini</string>
+    <string name="external_link_opened">Opened external link in browser</string>
+    <string name="file_chooser_title">Select file or image</string>
+</resources>
